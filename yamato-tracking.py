@@ -20,7 +20,7 @@ INTERVAL = 60
 class YamatoAdapter(HTTPAdapter):
     def init_poolmanager(self, connections, maxsize, block=False):
         ctx = ssl.create_default_context()
-        ctx.set_ciphers('@SECLEVEL=2:!aNULL:!eNULL:!aDSS:!SHA1:!AESCCM:!PSK:AESGCM')
+        ctx.set_ciphers('@SECLEVEL=2:ECDH+AESGCM:ECDH+CHACHA20:ECDH+AES:DHE+AES:AESGCM:!aNULL:!eNULL:!aDSS:!SHA1:!AESCCM:!PSK')
         self.poolmanager = PoolManager(
             num_pools=connections,
             maxsize=maxsize,
