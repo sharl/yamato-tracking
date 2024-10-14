@@ -76,7 +76,7 @@ class taskTray:
                                 body=title,
                                 audio='ms-winsoundevent:Notification.Reminder',
                             )
-                            count = count + 1
+                        count = count + 1
                 lines.append(title)
 
         if count:
