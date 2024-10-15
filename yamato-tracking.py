@@ -69,7 +69,7 @@ class taskTray:
                 if st:
                     stat = st.find_all('li')[-1].find_all('div')[0].text
                     title = f'{code} {stat}'
-                    if stat == '配達済み':
+                    if stat == '配達完了':
                         if self.notified is False:
                             self.notified = True
                             notify(
