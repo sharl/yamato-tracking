@@ -67,9 +67,12 @@ class taskTray:
                 soup = BeautifulSoup(r.content, 'html.parser')
                 st = soup.find('div', class_='tracking-invoice-block-detail')
                 if st:
-                    stat = st.find_all('li')[-1].find_all('div')[0].text
-                    title = f'{code} {stat}'
-                    if stat == '配達完了':
+                    stat = st.find_all('li')[-1].find_all('div')
+                    _stat = stat[0].text
+                    _time = stat[1].text
+                    _name = stat[2].text
+                    title = f'{code} {_stat} {_time} {_name}'
+                    if _stat == '配達完了':
                         if self.notified is False:
                             self.notified = True
                             notify(
