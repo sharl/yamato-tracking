@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
-import sys
-import time
+import ctypes
 import io
-import threading
 import ssl
+import sys
+import threading
+import time
 
-import schedule
-from pystray import Icon, Menu, MenuItem
 from PIL import Image, ImageEnhance
-import requests
+from bs4 import BeautifulSoup
+from pystray import Icon, Menu, MenuItem
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.poolmanager import PoolManager
-from bs4 import BeautifulSoup
 from win11toast import notify
+import darkdetect as dd
+import requests
+import schedule
 
 INTERVAL = 60
+PreferredAppMode = {
+    'Light': 0,
+    'Dark': 1,
+}
+# https://github.com/moses-palmer/pystray/issues/130
+ctypes.windll['uxtheme.dll'][135](PreferredAppMode[dd.theme()])
 
 
 class YamatoAdapter(HTTPAdapter):
